@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Segment Sense: An AI Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon1.png') }}" type="image/png">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            animation: fadeInBody 1s ease-in;
+        }
+
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100vw;
+            min-height: 100vh;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 12px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(6px);
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-icon {
+            height: 40px;
+            width: 40px;
+            margin-right: 15px;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .minor-project {
+            font-size: 1rem;
+            color: #dddddd;
+            font-weight: 500;
+            margin-left: 25px;
+        }
+
+        .top-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .top-button {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+        }
+
+        .top-button:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(16px);
+            padding: 50px 35px;
+            border-radius: 20px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+            margin: 160px auto 40px auto;
+            animation: slideIn 1s ease;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            color: #ffffff;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #dddddd;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #084298;
+            transform: scale(1.03);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        .info-section {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-section h3 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #dddddd;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<video autoplay muted playsinline loop id="bgVideo">
+    <source src="{{ url_for('static', filename='BGV-1.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="top-bar">
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='favicon1.png') }}" alt="Segment Sense logo" class="brand-icon" />
+        <div class="brand-name">Segment Sense</div>
+        <div class="minor-project">A Minor Project by CSE-AIML Students</div>
+    </div>
+    <div class="top-right">
+        <a href="#" class="top-button">Documentation</a>
+        <a href="#" class="top-button">Know the Team</a>
+    </div>
+</div>
+
+<div class="container" data-aos="fade-up">
+    <h2>📊 Segment Sense: An AI Tool</h2>
+    <form action="/result" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="file" class="form-label">Upload your CSV file</label>
+            <input class="form-control" type="file" name="file" id="file" required />
+        </div>
+        <button type="submit" class="btn btn-primary">🔍 Analyze Data</button>
+    </form>
+    <footer>
+        &copy; 2025 Segment Sense | Developed by Shivam, Rishita, Varun & Samarth
+    </footer>
+</div>
+
+<div class="info-section" data-aos="fade-up">
+    <h3>📌 What is Market Segmentation?</h3>
+    <p>
+        Market segmentation is the process of dividing a broad consumer or business market into sub-groups 
+        of consumers based on some type of shared characteristics. It enables companies to target different 
+        categories of consumers who perceive the full value of certain products and services differently from one another.
+    </p>
+    <p>
+        With the power of AI and data analytics, Segment Sense allows businesses to intelligently segment 
+        their customer base, understand specific needs, and personalize marketing efforts effectively. 
+        This leads to better customer satisfaction, increased sales, and stronger brand loyalty.
+    </p>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+</script>
+
+</body>
+</html>

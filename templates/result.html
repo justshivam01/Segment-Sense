@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Segmentation Results - Segment Sense</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon1.png') }}" type="image/png">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding-top: 60px;
+            margin: 0;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background video styling */
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100vw;
+            min-height: 100vh;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 30px auto 60px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .table {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Center-align all table headers and data cells */
+        .table th, .table td {
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        /* Styling cluster description table */
+        .cluster-desc {
+            margin-top: 40px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cluster-desc th, .cluster-desc td {
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .cluster-desc th {
+            background-color: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        /* Button container for horizontal alignment */
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* space between buttons */
+        }
+
+        .btn-back, .btn-details {
+            background-color: #ffffff;
+            color: #333333;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            width: max-content;
+            text-align: center;
+        }
+
+        .btn-back:hover, .btn-details:hover {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<video autoplay muted playsinline loop id="bgVideo">
+    <source src="{{ url_for('static', filename='BGV-1.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="container">
+    <h2>📊 Segmentation Results</h2>
+    <div class="table-responsive">
+        {{ table | safe }}
+    </div>
+
+    <!-- Cluster description table -->
+    <table class="cluster-desc">
+        <thead>
+            <tr>
+                <th>Cluster</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cluster 0</td>
+                <td>Younger customers, mid profit – possibly early-career professionals.</td>
+            </tr>
+            <tr>
+                <td>Cluster 1</td>
+                <td>Older customers, high profit – your most valuable segment.</td>
+            </tr>
+            <tr>
+                <td>Cluster 2</td>
+                <td>Middle-aged, low profit – possibly disengaged or price-sensitive.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <a href="/" class="btn-back">⬅️ Back to Upload</a>
+        <a href="/more-details" class="btn-details">More Details ➡️</a>
+    </div>
+</div>
+
+</body>
+</html>
