@@ -6,5 +6,3 @@ This project explores the concept of Market Segmentation, a key marketing strate
 
 Here's the direct url for the project - https://segmentsense.onrender.com
 
-
-![WhatsApp Image 2025-05-24 at 16 34 52_e6609065](https://github.com/user-attachments/assets/a1c4b009-ce52-4ab2-9c00-8a43dc096458)
