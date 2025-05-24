@@ -3,3 +3,5 @@ This project explores the concept of Market Segmentation, a key marketing strate
 
 
 ![Screenshot 2025-05-24 160617](https://github.com/user-attachments/assets/0ef863d5-e973-4fbc-aac2-c6bb97929694)
+
+Here's the direct url for the project - https://segmentsense.onrender.com
